@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(IsGrounded());
+        
         if (lookInput != Vector2.zero && cameraTransform != null)
         {
             //좌우 회전 - 캐릭터 스프라이트가 생기면..
