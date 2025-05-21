@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(IsGrounded());
         if (lookInput != Vector2.zero && cameraTransform != null)
         {
             //좌우 회전 - 캐릭터 스프라이트가 생기면..
@@ -73,29 +74,20 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        Ray[] rays = new Ray[4]
-        {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
-        };
+        // 플레이어 위치에서 약간 아래쪽에 구체 충돌 검사
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z);
+    
+        // 실제 충돌 검사 수행 (0.3f는 구체의 반지름)
+        return Physics.CheckSphere(spherePosition, 0.3f, groundLayerMask);
+    }
 
-        for (int i = 0; i < rays.Length; i++)
-        {
-            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
-            {
-                return true;
-            }
-        }
-
-        return false;
-
-
-
-
-
-
+// 에디터에서만 시각화를 위한 함수 
+    private void OnDrawGizmos()
+    {
+        // IsGrounded 시각화용 구체 표시
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spherePosition, 0.3f);
     }
 
     // Update is called once per frame
