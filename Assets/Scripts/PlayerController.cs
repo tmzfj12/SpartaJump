@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookInput;
    
 
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask groundLayerMask;
 
-    
+  
     
 
    private void Awake()
