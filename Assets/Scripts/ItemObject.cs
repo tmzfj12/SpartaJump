@@ -7,7 +7,7 @@ public class ItemObject : MonoBehaviour
    public ItemSO itemData;
 
 
-   private void OntriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
    {
       if (other.CompareTag("Player"))
       {

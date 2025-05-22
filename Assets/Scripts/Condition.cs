@@ -16,6 +16,7 @@ public class Condition : MonoBehaviour
     void Start()
     {
         curValue = startValue;
+ 		Debug.Log($"게임 시작 - 현재 체력: {curValue}, 최대 체력: {maxValue}, 퍼센트: {GetPercentage()}");
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class Condition : MonoBehaviour
 
     public float GetPercentage()
     {
-        return curValue / startValue;
+        return curValue / maxValue;
     }
     
 }
